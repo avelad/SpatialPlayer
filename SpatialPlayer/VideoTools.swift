@@ -139,7 +139,7 @@ struct VideoTools {
         
         guard let videoTrack = try? await asset.loadTracks(withMediaType: .video).first else {
             print("No video track found")
-            return nil
+            return videoInfo
         }
         
         // Get video properties
@@ -149,7 +149,7 @@ struct VideoTools {
             let formatDescription = formatDescriptions.first
         else {
             print("Failed to load video properties")
-            return nil
+            return videoInfo
         }
         
         videoInfo.size = naturalSize

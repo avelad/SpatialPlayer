@@ -36,8 +36,10 @@ struct ImmersiveView: View {
             // NOTE: If you want to force a custom projection, horizontal field of view, etc. because
             // your media doesn't contain the correct metadata, you can do that here. For example:
             //
-            // videoInfo.projectionType = .equirectangular
-            // videoInfo.horizontalFieldOfView = 360.0
+            videoInfo.projectionType = .equirectangular
+            videoInfo.horizontalFieldOfView = 360.0
+            videoInfo.isSpatial = true
+            videoInfo.size = CGSize(width: 1280.0, height: 720.0)
 
             viewModel.videoInfo = videoInfo
             viewModel.isSpatialVideoAvailable = videoInfo.isSpatial

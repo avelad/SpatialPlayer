@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 class PlayerViewModel: ObservableObject {
-    @Published var videoURL: URL?
+    @Published var videoURL: URL? = URL(string: "https://private.ateme-ri.com/VhObLtUMFf/ref/clear/hls/master.m3u8")
     @Published var videoInfo: VideoInfo = VideoInfo()
     @Published var isImmersiveSpaceShown: Bool = false
     @Published var isDocumentPickerPresented: Bool = false
