@@ -37,7 +37,7 @@ struct DocumentPicker: UIViewControllerRepresentable {
                 print("No document selected")
                 return
             }
-            parent.viewModel.videoURL = selectedURL
+            parent.viewModel.videoURL = URL(string: "https://private.ateme-ri.com/VhObLtUMFf/ref/clear/hls/master.m3u8")
             parent.viewModel.isDocumentPickerPresented = false
             parent.viewModel.isImmersiveSpaceShown = true
         }

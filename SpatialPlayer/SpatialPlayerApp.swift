@@ -14,7 +14,7 @@ struct SpatialPlayerApp: App {
     
     var body: some SwiftUI.Scene {
         WindowGroup {
-            ImmersiveView()
+            ContentView()
                 .environmentObject(viewModel)
         }
         
