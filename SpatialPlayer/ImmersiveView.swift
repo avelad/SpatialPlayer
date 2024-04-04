@@ -14,6 +14,7 @@ struct ImmersiveView: View {
     @State private var player: AVPlayer = AVPlayer()
     @State private var isURLSecurityScoped: Bool = false
     @State private var videoMaterial: VideoMaterial?
+    @State private var observer: NSKeyValueObservation?
     
     var body: some View {
         RealityView { content in
@@ -40,6 +41,11 @@ struct ImmersiveView: View {
                 videoInfo.projectionType = .equirectangular
                 videoInfo.horizontalFieldOfView = 360.0
                 videoInfo.isSpatial = true
+                observer = playerItem.observe(\.presentationSize, options:  [.new, .old], changeHandler: { (playerItem, change) in
+                    if playerItem.presentationSize != .zero {
+                        videoInfo.size = playerItem.presentationSize;
+                    }
+                })
             }
 
             viewModel.videoInfo = videoInfo
@@ -69,6 +75,7 @@ struct ImmersiveView: View {
             if isURLSecurityScoped, let url = viewModel.videoURL {
                 url.stopAccessingSecurityScopedResource()
             }
+            observer?.invalidate()
         }
         .onChange(of: viewModel.shouldPlayInStereo) { _, newValue in
             updateStereoMode()
