@@ -16,7 +16,7 @@ struct ContentView: View {
         VStack {
             if viewModel.isImmersiveSpaceShown {
                 Text("Spatial:").bold() + Text(" \(viewModel.videoInfo.isSpatial ? "Yes" : "No")")
-                Text("Size:").bold() + Text(" \(viewModel.videoInfo.sizeString)")
+                Text("Size:").bold() + Text(" \(viewModel.sizeString)")
                 Text("Projection:").bold() + Text(" \(viewModel.videoInfo.projectionTypeString)")
                 Text("Horizontal FOV:").bold() + Text(" \(viewModel.videoInfo.horizontalFieldOfViewString)")
                 Toggle("Show in stereo", isOn: $viewModel.shouldPlayInStereo)

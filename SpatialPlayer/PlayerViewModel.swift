@@ -19,4 +19,19 @@ class PlayerViewModel: ObservableObject {
     var isStereoEnabled: Bool {
         isSpatialVideoAvailable && shouldPlayInStereo
     }
+    
+    @Published var sizeString: String = ""
+
+    var timer: Timer?
+    init() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.refresh()
+        })
+    }
+    deinit {
+        timer?.invalidate()
+    }
+    func refresh() {
+        sizeString = videoInfo.sizeString
+    }
 }

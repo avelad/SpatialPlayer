@@ -44,12 +44,14 @@ struct ImmersiveView: View {
                 observer = playerItem.observe(\.presentationSize, options:  [.new, .old], changeHandler: { (playerItem, change) in
                     if playerItem.presentationSize != .zero {
                         videoInfo.size = playerItem.presentationSize;
+                        viewModel.refresh()
                     }
                 })
             }
 
             viewModel.videoInfo = videoInfo
             viewModel.isSpatialVideoAvailable = videoInfo.isSpatial
+            viewModel.refresh()
             
             guard let (mesh, transform) = await VideoTools.makeVideoMesh(videoInfo: videoInfo) else {
                 print("Failed to get video mesh")
