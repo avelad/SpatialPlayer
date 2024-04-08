@@ -15,14 +15,18 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if viewModel.isImmersiveSpaceShown {
-                Text("Spatial:").bold() + Text(" \(viewModel.videoInfo.isSpatial ? "Yes" : "No")")
-                Text("Size:").bold() + Text(" \(viewModel.sizeString)")
-                Text("Projection:").bold() + Text(" \(viewModel.videoInfo.projectionTypeString)")
-                Text("Horizontal FOV:").bold() + Text(" \(viewModel.videoInfo.horizontalFieldOfViewString)")
-                Toggle("Show in stereo", isOn: $viewModel.shouldPlayInStereo)
-                    .fixedSize()
-                    .disabled(!viewModel.isSpatialVideoAvailable)
-                    .padding()
+                if viewModel.isHLS {
+                    Text("Size:").bold() + Text(" \(viewModel.sizeString)")
+                } else {
+                    Text("Spatial:").bold() + Text(" \(viewModel.videoInfo.isSpatial ? "Yes" : "No")")
+                    Text("Size:").bold() + Text(" \(viewModel.sizeString)")
+                    Text("Projection:").bold() + Text(" \(viewModel.videoInfo.projectionTypeString)")
+                    Text("Horizontal FOV:").bold() + Text(" \(viewModel.videoInfo.horizontalFieldOfViewString)")
+                    Toggle("Show in stereo", isOn: $viewModel.shouldPlayInStereo)
+                        .fixedSize()
+                        .disabled(!viewModel.isSpatialVideoAvailable)
+                        .padding()
+                }
             } else {
                 Text("Spatial Player").font(.title).padding()
                 Text("by Michael Swanson")
