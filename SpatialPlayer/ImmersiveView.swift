@@ -41,10 +41,10 @@ struct ImmersiveView: View {
                 videoInfo.projectionType = .equirectangular
                 videoInfo.horizontalFieldOfView = 360.0
                 videoInfo.isSpatial = true
+                viewModel.isHLS = true
                 observer = playerItem.observe(\.presentationSize, options:  [.new, .old], changeHandler: { (playerItem, change) in
                     if playerItem.presentationSize != .zero {
                         videoInfo.size = playerItem.presentationSize;
-                        viewModel.refresh()
                     }
                 })
             }

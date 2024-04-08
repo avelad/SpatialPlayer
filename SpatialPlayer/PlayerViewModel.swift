@@ -15,6 +15,7 @@ class PlayerViewModel: ObservableObject {
     @Published var isDocumentPickerPresented: Bool = false
     @Published var isSpatialVideoAvailable: Bool = false
     @Published var shouldPlayInStereo: Bool = true
+    @Published var isHLS: Bool = false
     
     var isStereoEnabled: Bool {
         isSpatialVideoAvailable && shouldPlayInStereo
