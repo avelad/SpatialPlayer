@@ -29,7 +29,7 @@ struct ContentView: View {
                 }
             } else {
                 Text("Spatial Player").font(.title).padding()
-                Text("by Michael Swanson")
+                Text("by Michael Swanson (modified by ATEME)")
                 Link("https://blog.mikeswanson.com/spatial", destination: URL(string: "https://blog.mikeswanson.com/spatial")!)
                 Text("An example spatial video player for MV-HEVC video.\nIt doesn't do much, but I hope it gets you started.\nIf you build something with it, let me know!").padding()
             }
@@ -41,7 +41,23 @@ struct ContentView: View {
             .sheet(isPresented: $viewModel.isDocumentPickerPresented) {
                 DocumentPicker()
             }
+            Text("Default projection type")
+            Picker("Default projection type", selection: $viewModel.defaultProjectionType) {
+                ForEach(PlayerViewModel.ProjectionType.allCases) { projectionType in
+                    Text(projectionType.rawValue.capitalized)
+                }
+            }
+            Text("Default horizontal field of view")
+            Picker("Default horizontal field of view", selection: $viewModel.defaultHorizontalFieldOfView) {
+                ForEach(PlayerViewModel.HorizontalFieldOfView.allCases) { horizontalFieldOfView in
+                    Text(horizontalFieldOfView.rawValue.capitalized)
+                }
+            }
+            Toggle("Default is spatial", isOn: $viewModel.defaultIsSpatial)
+                .fixedSize()
+                .padding()
         }
+        .pickerStyle(.segmented)
         .controlSize(.large)
         .onChange(of: viewModel.isImmersiveSpaceShown) { _, newValue in
             Task {

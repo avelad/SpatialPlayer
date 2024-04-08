@@ -35,4 +35,25 @@ class PlayerViewModel: ObservableObject {
     func refresh() {
         sizeString = videoInfo.sizeString
     }
+    
+    enum HorizontalFieldOfView: String, CaseIterable, Identifiable {
+        case full = "360.0"
+        case half = "180.0"
+        case center = "63.0"
+        var id: Self { self }
+    }
+    
+    @Published var defaultHorizontalFieldOfView: HorizontalFieldOfView = HorizontalFieldOfView.full
+    
+    enum ProjectionType: String, CaseIterable, Identifiable {
+        case equirectangular = "equirectangular"
+        case fisheye = "fisheye"
+        case halfEquirectangular = "halfEquirectangular"
+        case rectangular = "rectangular"
+        var id: Self { self }
+    }
+        
+    @Published var defaultProjectionType: ProjectionType = ProjectionType.equirectangular
+    
+    @Published var defaultIsSpatial: Bool = true
 }

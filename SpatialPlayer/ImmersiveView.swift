@@ -38,10 +38,23 @@ struct ImmersiveView: View {
             // your media doesn't contain the correct metadata, you can do that here. For example:
             //
             if (videoInfo.size == .zero) {
-                videoInfo.projectionType = .equirectangular
-                videoInfo.horizontalFieldOfView = 360.0
-                videoInfo.isSpatial = true
                 viewModel.isHLS = true
+                switch (viewModel.defaultProjectionType) {
+                case PlayerViewModel.ProjectionType.equirectangular:
+                    videoInfo.projectionType = .equirectangular
+                    break
+                case PlayerViewModel.ProjectionType.fisheye:
+                    videoInfo.projectionType = .fisheye
+                    break
+                case PlayerViewModel.ProjectionType.halfEquirectangular:
+                    videoInfo.projectionType = .halfEquirectangular
+                    break
+                case PlayerViewModel.ProjectionType.rectangular:
+                    videoInfo.projectionType = .rectangular
+                    break
+                }
+                videoInfo.horizontalFieldOfView = Float(viewModel.defaultHorizontalFieldOfView.rawValue)
+                videoInfo.isSpatial = viewModel.defaultIsSpatial
                 observer = playerItem.observe(\.presentationSize, options:  [.new, .old], changeHandler: { (playerItem, change) in
                     if playerItem.presentationSize != .zero {
                         videoInfo.size = playerItem.presentationSize;
