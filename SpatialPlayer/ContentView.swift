@@ -12,6 +12,19 @@ struct ContentView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
+    @State private var urlDialog = false
+    @State private var urlString = ""
+    
+    func urlSubmit() {
+        if (urlString != "") {
+            viewModel.videoURL = URL(string: urlString)
+            viewModel.isHLS = false
+            viewModel.isDocumentPickerPresented = false
+            viewModel.isImmersiveSpaceShown = true
+        }
+        urlDialog = false
+    }
+    
     var body: some View {
         VStack {
             if viewModel.isImmersiveSpaceShown {
@@ -41,6 +54,15 @@ struct ContentView: View {
             .sheet(isPresented: $viewModel.isDocumentPickerPresented) {
                 DocumentPicker()
             }
+            Button("Enter your URL") {
+                viewModel.isImmersiveSpaceShown = false
+                urlDialog.toggle()
+            }
+            .alert("Enter your URL", isPresented: $urlDialog) {
+                TextField("Enter your URL", text: $urlString)
+                Button("OK", action: urlSubmit)
+            }
+            .padding()
             Text("Default projection type")
             Picker("Default projection type", selection: $viewModel.defaultProjectionType) {
                 ForEach(PlayerViewModel.ProjectionType.allCases) { projectionType in
