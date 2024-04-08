@@ -13,7 +13,7 @@ struct ContentView: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     @State private var urlDialog = false
-    @State private var urlString = ""
+    @State private var urlString = "https://storage.googleapis.com/shaka-demo-assets/bbb-dark-truths-hls/hls.m3u8"
     
     func urlSubmit() {
         if (urlString != "") {
