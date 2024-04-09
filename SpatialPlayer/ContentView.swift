@@ -29,8 +29,14 @@ struct ContentView: View {
         VStack {
             if viewModel.isImmersiveSpaceShown {
                 if viewModel.isHLS {
+                    Text("\(viewModel.videoURL?.absoluteString ?? "")")
+                        .bold()
+                        .padding()
                     Text("Size:").bold() + Text(" \(viewModel.sizeString)")
                 } else {
+                    Text("\(viewModel.videoURL?.lastPathComponent ?? "")")
+                        .bold()
+                        .padding()
                     Text("Spatial:").bold() + Text(" \(viewModel.videoInfo.isSpatial ? "Yes" : "No")")
                     Text("Size:").bold() + Text(" \(viewModel.sizeString)")
                     Text("Projection:").bold() + Text(" \(viewModel.videoInfo.projectionTypeString)")
