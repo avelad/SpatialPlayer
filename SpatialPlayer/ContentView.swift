@@ -96,6 +96,24 @@ struct ContentView: View {
                 }
             }
         }
+        .onChange(of: viewModel.defaultProjectionType) { _, newValue in
+            Task {
+                if (viewModel.isHLS) {
+                    viewModel.isImmersiveSpaceShown = !viewModel.isImmersiveSpaceShown
+                    try? await Task.sleep(nanoseconds:500_000_000)
+                    viewModel.isImmersiveSpaceShown = !viewModel.isImmersiveSpaceShown
+                }
+            }
+        }
+        .onChange(of: viewModel.defaultHorizontalFieldOfView) { _, newValue in
+            Task {
+                if (viewModel.isHLS) {
+                    viewModel.isImmersiveSpaceShown = !viewModel.isImmersiveSpaceShown
+                    try? await Task.sleep(nanoseconds:500_000_000)
+                    viewModel.isImmersiveSpaceShown = !viewModel.isImmersiveSpaceShown
+                }
+            }
+        }
         .padding()
     }
 }
