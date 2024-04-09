@@ -43,7 +43,7 @@ class PlayerViewModel: ObservableObject {
         var id: Self { self }
     }
     
-    @Published var defaultHorizontalFieldOfView: HorizontalFieldOfView = HorizontalFieldOfView.full
+    @Published var defaultHorizontalFieldOfView: HorizontalFieldOfView = HorizontalFieldOfView.center
     
     enum ProjectionType: String, CaseIterable, Identifiable {
         case equirectangular = "equirectangular"
@@ -53,7 +53,7 @@ class PlayerViewModel: ObservableObject {
         var id: Self { self }
     }
         
-    @Published var defaultProjectionType: ProjectionType = ProjectionType.equirectangular
+    @Published var defaultProjectionType: ProjectionType = ProjectionType.rectangular
     
     @Published var defaultIsSpatial: Bool = true
 }

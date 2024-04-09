@@ -192,9 +192,13 @@ struct VideoTools {
                 translation: .init(x: 0, y: 0, z: 0))
         } else {
 
+            var size: CGSize = videoInfo.size
+            if (size == .zero) {
+                size = CGSize(width: 3840.0, height: 2160.0)
+            }
             // Assume rectilinear
             let width: Float = 1.0
-            let height: Float = Float(videoInfo.size.height / videoInfo.size.width)
+            let height: Float = Float(size.height / size.width)
             
             mesh = await .generatePlane(width: width, depth: height)
             
