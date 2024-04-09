@@ -12,8 +12,10 @@ struct ContentView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
+    @ObservedObject var datas = ReadData()
+    
     @State private var urlDialog = false
-    @State private var urlString = "https://storage.googleapis.com/shaka-demo-assets/bbb-dark-truths-hls/hls.m3u8"
+    @State private var urlString = "https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/main.m3u8"
     
     func urlSubmit() {
         if (urlString != "") {
@@ -60,15 +62,40 @@ struct ContentView: View {
             .sheet(isPresented: $viewModel.isDocumentPickerPresented) {
                 DocumentPicker()
             }
-            Button("Enter your URL") {
-                viewModel.isImmersiveSpaceShown = false
-                urlDialog.toggle()
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(datas.videos, id: \.id) { video in
+                        Button("\(video.name)", action: {
+                            if (viewModel.isImmersiveSpaceShown) {
+                                viewModel.isImmersiveSpaceShown = false
+                                Task {
+                                    try? await Task.sleep(nanoseconds:1_000_000_000)
+                                    viewModel.videoURL = URL(string: video.url)
+                                    viewModel.isHLS = false
+                                    viewModel.isDocumentPickerPresented = false
+                                    viewModel.isImmersiveSpaceShown = true
+                                }
+                            } else {
+                                viewModel.videoURL = URL(string: video.url)
+                                viewModel.isHLS = false
+                                viewModel.isDocumentPickerPresented = false
+                                viewModel.isImmersiveSpaceShown = true
+                            }
+                        })
+                    }
+                        .listStyle(.plain)
+                    Button("Enter your URL") {
+                        viewModel.isImmersiveSpaceShown = false
+                        urlDialog.toggle()
+                    }
+                    .alert("Enter your URL", isPresented: $urlDialog) {
+                        TextField("Enter your URL", text: $urlString)
+                        Button("OK", action: urlSubmit)
+                    }
+                }
             }
-            .alert("Enter your URL", isPresented: $urlDialog) {
-                TextField("Enter your URL", text: $urlString)
-                Button("OK", action: urlSubmit)
-            }
-            .padding()
+                .frame(height: 60)
+                .padding()
             Text("Default projection type")
             Picker("Default projection type", selection: $viewModel.defaultProjectionType) {
                 ForEach(PlayerViewModel.ProjectionType.allCases) { projectionType in

@@ -1,0 +1,34 @@
+[
+    {
+        "url" : "https://devstreaming-cdn.apple.com/videos/streaming/examples/historic_planet_content_2023-10-26-3d-video/main.m3u8",
+        "name": "Prehistoric Planet Clip",
+    },
+    {
+        "url": "https://playgrounds-cdn.apple.com/assets/beach/index.m3u8",
+        "name": "A Beach",
+    },
+    {
+        "url" : "https://playgrounds-cdn.apple.com/assets/lake/index.m3u8",
+        "name": "By the Lake",
+    },
+    {
+        "url" : "https://playgrounds-cdn.apple.com/assets/camping/index.m3u8",
+        "name": "Camping in the Woods",
+    },
+    {
+        "url" : "https://playgrounds-cdn.apple.com/assets/park/index.m3u8",
+        "name": "Birds in the Park",
+    },
+    {
+        "url" : "https://playgrounds-cdn.apple.com/assets/creek/index.m3u8",
+        "name": "Mystery Creek",
+    },
+    {
+        "url" : "https://playgrounds-cdn.apple.com/assets/hillside/index.m3u8",
+        "name": "The Rolling Hills",
+    },
+    {
+        "url" : "https://playgrounds-cdn.apple.com/assets/ocean/index.m3u8",
+        "name": "Ocean Breeze",
+    },
+]
