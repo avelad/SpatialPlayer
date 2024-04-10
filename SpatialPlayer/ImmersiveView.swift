@@ -11,7 +11,6 @@ import SwiftUI
 
 struct ImmersiveView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
-    @State private var player: AVPlayer = AVPlayer()
     @State private var isURLSecurityScoped: Bool = false
     @State private var videoMaterial: VideoMaterial?
     @State private var observer: NSKeyValueObservation?
@@ -71,7 +70,7 @@ struct ImmersiveView: View {
                 return
             }
             
-            videoMaterial = VideoMaterial(avPlayer: player)
+            videoMaterial = VideoMaterial(avPlayer: viewModel.player)
             guard let videoMaterial else {
                 print("Failed to create video material")
                 return
@@ -83,14 +82,15 @@ struct ImmersiveView: View {
             videoEntity.transform = transform
             content.add(videoEntity)
             
-            player.replaceCurrentItem(with: playerItem)
-            player.play()
+            viewModel.player.replaceCurrentItem(with: playerItem)
+            viewModel.player.play()
         }
         .onDisappear {
             if isURLSecurityScoped, let url = viewModel.videoURL {
                 url.stopAccessingSecurityScopedResource()
             }
             observer?.invalidate()
+            viewModel.player.replaceCurrentItem(with: nil)
         }
         .onChange(of: viewModel.shouldPlayInStereo) { _, newValue in
             updateStereoMode()

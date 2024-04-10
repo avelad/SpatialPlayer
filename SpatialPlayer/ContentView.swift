@@ -46,8 +46,15 @@ struct ContentView: View {
                     Toggle("Show in stereo", isOn: $viewModel.shouldPlayInStereo)
                         .fixedSize()
                         .disabled(!viewModel.isSpatialVideoAvailable)
-                        .padding()
                 }
+                Button("Toggle Play/Pause", action: {
+                    if (viewModel.player.timeControlStatus == .playing) {
+                        viewModel.player.pause()
+                    } else {
+                        viewModel.player.play()
+                    }
+                })
+                    .padding()
             } else {
                 Text("Spatial Player").font(.title).padding()
                 Text("by Michael Swanson (modified by ATEME)")

@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import AVFoundation
 
 class PlayerViewModel: ObservableObject {
     @Published var videoURL: URL?
@@ -16,6 +17,7 @@ class PlayerViewModel: ObservableObject {
     @Published var isSpatialVideoAvailable: Bool = false
     @Published var shouldPlayInStereo: Bool = true
     @Published var isHLS: Bool = false
+    @Published var player: AVPlayer = AVPlayer()
     
     var isStereoEnabled: Bool {
         isSpatialVideoAvailable && shouldPlayInStereo
