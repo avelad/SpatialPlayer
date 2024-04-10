@@ -38,6 +38,8 @@ struct DocumentPicker: UIViewControllerRepresentable {
                 return
             }
             parent.viewModel.videoURL = selectedURL
+            parent.viewModel.certificateURL = nil
+            parent.viewModel.licenseURL = nil
             parent.viewModel.isHLS = false
             parent.viewModel.isDocumentPickerPresented = false
             parent.viewModel.isImmersiveSpaceShown = true

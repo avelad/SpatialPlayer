@@ -11,6 +11,8 @@ import AVFoundation
 
 class PlayerViewModel: ObservableObject {
     @Published var videoURL: URL?
+    @Published var certificateURL: URL?
+    @Published var licenseURL: URL?
     @Published var videoInfo: VideoInfo = VideoInfo()
     @Published var isImmersiveSpaceShown: Bool = false
     @Published var isDocumentPickerPresented: Bool = false

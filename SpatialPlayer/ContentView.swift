@@ -20,6 +20,8 @@ struct ContentView: View {
     func urlSubmit() {
         if (urlString != "") {
             viewModel.videoURL = URL(string: urlString)
+            viewModel.certificateURL = nil
+            viewModel.licenseURL = nil
             viewModel.isHLS = false
             viewModel.isDocumentPickerPresented = false
             viewModel.isImmersiveSpaceShown = true
@@ -78,12 +80,16 @@ struct ContentView: View {
                                 Task {
                                     try? await Task.sleep(nanoseconds:1_000_000_000)
                                     viewModel.videoURL = URL(string: video.url)
+                                    viewModel.certificateURL = URL(string: video.certificate ?? "")
+                                    viewModel.licenseURL = URL(string: video.license ?? "")
                                     viewModel.isHLS = false
                                     viewModel.isDocumentPickerPresented = false
                                     viewModel.isImmersiveSpaceShown = true
                                 }
                             } else {
                                 viewModel.videoURL = URL(string: video.url)
+                                viewModel.certificateURL = URL(string: video.certificate ?? "")
+                                viewModel.licenseURL = URL(string: video.license ?? "")
                                 viewModel.isHLS = false
                                 viewModel.isDocumentPickerPresented = false
                                 viewModel.isImmersiveSpaceShown = true
