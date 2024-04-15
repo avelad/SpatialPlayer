@@ -25,7 +25,7 @@ struct ImmersiveView: View {
             // Wrap access in a security scope
             isURLSecurityScoped = url.startAccessingSecurityScopedResource()
             
-            let asset = AVURLAsset(url: url)
+            let asset = FairPlayPlayer().getAsset(with: viewModel)
             let playerItem = AVPlayerItem(asset: asset)
             
             guard let videoInfo = await VideoTools.getVideoInfo(asset: asset) else {

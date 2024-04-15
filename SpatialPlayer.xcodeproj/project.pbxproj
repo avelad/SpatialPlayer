@@ -19,6 +19,7 @@
 		770D813D2BC5873500A5BD78 /* Videos.json in Resources */ = {isa = PBXBuildFile; fileRef = 770D813C2BC5873500A5BD78 /* Videos.json */; };
 		770D81412BC58A6900A5BD78 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770D81402BC58A6900A5BD78 /* Video.swift */; };
 		770D81432BC58AAA00A5BD78 /* ReadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770D81422BC58AAA00A5BD78 /* ReadData.swift */; };
+		775FCF962BCD0EA600E4626E /* FairPlayPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775FCF952BCD0EA600E4626E /* FairPlayPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		770D813C2BC5873500A5BD78 /* Videos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Videos.json; sourceTree = "<group>"; };
 		770D81402BC58A6900A5BD78 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		770D81422BC58AAA00A5BD78 /* ReadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadData.swift; sourceTree = "<group>"; };
+		775FCF952BCD0EA600E4626E /* FairPlayPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FairPlayPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				4C6B90FC2B72E08000DF217E /* Info.plist */,
 				770D81402BC58A6900A5BD78 /* Video.swift */,
 				770D81422BC58AAA00A5BD78 /* ReadData.swift */,
+				775FCF952BCD0EA600E4626E /* FairPlayPlayer.swift */,
 			);
 			path = SpatialPlayer;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				775FCF962BCD0EA600E4626E /* FairPlayPlayer.swift in Sources */,
 				4C6B90F22B72E07F00DF217E /* ContentView.swift in Sources */,
 				4CDBB18B2B97A3AE0062E7CD /* CMProjectionType+String.swift in Sources */,
 				4C6B91052B72F9B900DF217E /* PlayerViewModel.swift in Sources */,
@@ -300,17 +304,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 62HQ8PU2TE;
+				DEVELOPMENT_TEAM = HPUKS772XR;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mikeswanson.SpatialPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ateme.SpatialPlayer;
 				PRODUCT_NAME = "Spatial Player";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -324,17 +329,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 62HQ8PU2TE;
+				DEVELOPMENT_TEAM = HPUKS772XR;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mikeswanson.SpatialPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ateme.SpatialPlayer;
 				PRODUCT_NAME = "Spatial Player";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
