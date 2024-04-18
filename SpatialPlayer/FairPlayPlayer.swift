@@ -43,7 +43,7 @@ class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
         
         // Completion handler for making streaming content key request
         let handleCkcAndMakeContentAvailable = { [weak self] (spcData: Data?, error: Error?) in
-            guard let strongSelf = self else { return }
+            guard self != nil else { return }
             
             if let error = error {
                 print("ERROR: Failed to prepare SPC: \(error.localizedDescription)")
