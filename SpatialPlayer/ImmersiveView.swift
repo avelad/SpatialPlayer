@@ -28,6 +28,14 @@ struct ImmersiveView: View {
             let asset = FairPlayPlayer().getAsset(with: viewModel)
             let playerItem = AVPlayerItem(asset: asset)
             
+            do {
+                let session = AVAudioSession.sharedInstance()
+                // Configure the app for playback of long-form movies.
+                try session.setCategory(.playback, mode: .moviePlayback)
+            } catch {
+                // Handle error.
+            }
+            
             guard let videoInfo = await VideoTools.getVideoInfo(asset: asset) else {
                 print("Failed to get video info")
                 return
