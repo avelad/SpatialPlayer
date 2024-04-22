@@ -13,7 +13,11 @@ struct ImmersiveView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
     @State private var isURLSecurityScoped: Bool = false
     @State private var videoMaterial: VideoMaterial?
-    @State private var observer: NSKeyValueObservation?
+    @State private var presentationSizeObserver: NSKeyValueObservation?
+    @State private var statusObserver: NSKeyValueObservation?
+    @State private var playbackBufferEmptyObserver: NSKeyValueObservation?
+    @State private var playbackLikelyToKeepUpObserver: NSKeyValueObservation?
+    @State private var playbackBufferFullObserver: NSKeyValueObservation?
     
     var body: some View {
         RealityView { content in
@@ -62,10 +66,27 @@ struct ImmersiveView: View {
                 }
                 videoInfo.horizontalFieldOfView = Float(viewModel.defaultHorizontalFieldOfView.rawValue)
                 videoInfo.isSpatial = viewModel.defaultIsSpatial
-                observer = playerItem.observe(\.presentationSize, options:  [.new, .old], changeHandler: { (playerItem, change) in
+                presentationSizeObserver = playerItem.observe(\.presentationSize, options:  [.new, .old], changeHandler: { (playerItem, change) in
                     if playerItem.presentationSize != .zero {
                         videoInfo.size = playerItem.presentationSize;
                     }
+                    print("Current presentation size", playerItem.presentationSize)
+                })
+                statusObserver = playerItem.observe(\.status, options:  [.new, .old], changeHandler: { (playerItem, change) in
+                    if playerItem.status == .readyToPlay {
+                        print("Current item status is ready")
+                    } else if playerItem.status == .failed {
+                        print("Current item status is failed")
+                    }
+                })
+                playbackBufferEmptyObserver = playerItem.observe(\.isPlaybackBufferEmpty, options:  [.new, .old], changeHandler: { (playerItem, change) in
+                    print("buffering...")
+                })
+                playbackLikelyToKeepUpObserver = playerItem.observe(\.isPlaybackLikelyToKeepUp, options:  [.new, .old], changeHandler: { (playerItem, change) in
+                    print("buffering ends...")
+                })
+                playbackBufferFullObserver = playerItem.observe(\.isPlaybackBufferFull, options:  [.new, .old], changeHandler: { (playerItem, change) in
+                    print("buffering is hidden...")
                 })
             }
 
@@ -97,7 +118,11 @@ struct ImmersiveView: View {
             if isURLSecurityScoped, let url = viewModel.videoURL {
                 url.stopAccessingSecurityScopedResource()
             }
-            observer?.invalidate()
+            presentationSizeObserver?.invalidate()
+            statusObserver?.invalidate()
+            playbackBufferEmptyObserver?.invalidate()
+            playbackLikelyToKeepUpObserver?.invalidate()
+            playbackBufferFullObserver?.invalidate()
             viewModel.player.replaceCurrentItem(with: nil)
         }
         .onChange(of: viewModel.shouldPlayInStereo) { _, newValue in
