@@ -77,6 +77,9 @@ struct ImmersiveView: View {
                         print("Current item status is ready")
                     } else if playerItem.status == .failed {
                         print("Current item status is failed")
+                        if let error = playerItem.error as NSError? {
+                            print("Error", error.localizedFailureReason!, error.localizedDescription)
+                        }
                     }
                 })
                 playbackBufferEmptyObserver = playerItem.observe(\.isPlaybackBufferEmpty, options:  [.new, .old], changeHandler: { (playerItem, change) in
