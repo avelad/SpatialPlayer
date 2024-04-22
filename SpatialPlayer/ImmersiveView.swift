@@ -78,7 +78,7 @@ struct ImmersiveView: View {
                     } else if playerItem.status == .failed {
                         print("Current item status is failed")
                         if let error = playerItem.error as NSError? {
-                            print("Error", error.localizedFailureReason!, error.localizedDescription)
+                            print("Error", error.localizedFailureReason ?? "", error.localizedDescription)
                         }
                     }
                 })
