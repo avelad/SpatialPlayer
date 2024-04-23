@@ -103,19 +103,27 @@ class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
      Requests the Application Certificate.
     */
     func requestApplicationCertificate() throws -> Data {
-        var applicationCertificate: Data? = nil
+        var data: Data?
+        var error: Error?
+
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let dataTask = self.urlSession.dataTask(with: (currentItem?.certificateURL)!) {
+            data = $0
+            error = $2
+            semaphore.signal()
+        }
+        dataTask.resume()
+
+        _ = semaphore.wait(timeout: .distantFuture)
         
-        do {
-            // Load the FairPlay application certificate from the specified URL.
-            applicationCertificate = try Data(contentsOf: (currentItem?.certificateURL)!)
-        } catch {
+        if ((error != nil)) {
             // Handle any errors that occur while loading the certificate.
-            let errorMessage = "Failed to load the FairPlay application certificate. Error: \(error)"
+            let errorMessage = "Failed to load the FairPlay application certificate. Error: \(error!)"
             print(errorMessage)
-            throw error
+            throw error!
         }
         
-        // Return the loaded application certificate.
-        return applicationCertificate!
+        return data!
     }
 }
