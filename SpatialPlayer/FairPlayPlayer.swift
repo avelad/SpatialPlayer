@@ -54,6 +54,8 @@ class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
             
             guard let spcData = spcData else { return }
             
+            print("License URL", (strongSelf.currentItem?.licenseURL)!.absoluteString)
+            
             // Send SPC to the license service to obtain CKC
             var licenseRequest = URLRequest(url: (strongSelf.currentItem?.licenseURL)!)
             licenseRequest.httpMethod = "POST"
@@ -107,6 +109,8 @@ class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
         var error: Error?
 
         let semaphore = DispatchSemaphore(value: 0)
+        
+        print("Certificate URL", (currentItem?.certificateURL)!.absoluteString)
 
         let dataTask = self.urlSession.dataTask(with: (currentItem?.certificateURL)!) {
             data = $0
