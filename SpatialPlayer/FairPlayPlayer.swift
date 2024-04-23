@@ -43,7 +43,7 @@ class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
         
         // Completion handler for making streaming content key request
         let handleCkcAndMakeContentAvailable = { [weak self] (spcData: Data?, error: Error?) in
-            guard self != nil else { return }
+            guard let strongSelf = self else { return }
             
             if let error = error {
                 print("ERROR: Failed to prepare SPC: \(error.localizedDescription)")
@@ -55,7 +55,7 @@ class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
             guard let spcData = spcData else { return }
             
             // Send SPC to the license service to obtain CKC
-            var licenseRequest = URLRequest(url: (self!.currentItem?.licenseURL)!)
+            var licenseRequest = URLRequest(url: (strongSelf.currentItem?.licenseURL)!)
             licenseRequest.httpMethod = "POST"
             licenseRequest.httpBody = spcData
             
