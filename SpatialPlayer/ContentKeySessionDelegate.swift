@@ -1,34 +1,22 @@
 //
-//  FairPlayPlayer.swift
+//  ContentKeySessionDelegate.swift
 //  SpatialPlayer
 //
-//  Created by Alvaro Velad Galvan on 15/4/24.
+//  Created by Alvaro Velad Galvan on 24/4/24.
 //
 
-import Foundation
 import AVFoundation
 
-class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
-    
-    /// The currently loaded video.
-    private(set) var currentItem: PlayerViewModel? = nil
-    
-    /// AVContentKeySession for handling content key requests
-    private var contentKeySession: AVContentKeySession!
+class ContentKeySessionDelegate: NSObject, AVContentKeySessionDelegate {
+    var licenseURL: URL
+    var certificateURL: URL
     
     /// URLSession for network requests
     private let urlSession = URLSession(configuration: .default)
     
-    func getAsset(with video: PlayerViewModel) -> AVURLAsset {
-        currentItem = video
-        let asset = AVURLAsset(url: video.videoURL!)
-        if (video.certificateURL != nil && video.licenseURL != nil) {
-            // Create the Content Key Session using the FairPlay Streaming key system.
-            contentKeySession = AVContentKeySession(keySystem: .fairPlayStreaming)
-            contentKeySession.setDelegate(self, queue: DispatchQueue(label: "\(Bundle.main.bundleIdentifier!).ContentKeyDelegateQueue"))
-            contentKeySession.addContentKeyRecipient(asset)
-        }
-        return asset
+    init(licenseURL: URL, certificateURL: URL) {
+        self.licenseURL = licenseURL
+        self.certificateURL = certificateURL
     }
     
     func contentKeySession(_ session: AVContentKeySession, didProvide keyRequest: AVContentKeyRequest) {
@@ -54,10 +42,10 @@ class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
             
             guard let spcData = spcData else { return }
             
-            print("License URL", (strongSelf.currentItem?.licenseURL)!.absoluteString)
+            print("License URL", strongSelf.licenseURL.absoluteString)
             
             // Send SPC to the license service to obtain CKC
-            var licenseRequest = URLRequest(url: (strongSelf.currentItem?.licenseURL)!)
+            var licenseRequest = URLRequest(url: strongSelf.licenseURL)
             licenseRequest.httpMethod = "POST"
             licenseRequest.httpBody = spcData
             
@@ -110,9 +98,9 @@ class FairPlayPlayer: NSObject, AVContentKeySessionDelegate {
 
         let semaphore = DispatchSemaphore(value: 0)
         
-        print("Certificate URL", (currentItem?.certificateURL)!.absoluteString)
+        print("Certificate URL", certificateURL.absoluteString)
 
-        let dataTask = self.urlSession.dataTask(with: (currentItem?.certificateURL)!) {
+        let dataTask = self.urlSession.dataTask(with: certificateURL) {
             data = $0
             error = $2
             semaphore.signal()

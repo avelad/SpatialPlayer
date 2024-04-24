@@ -29,7 +29,22 @@ struct ImmersiveView: View {
             // Wrap access in a security scope
             isURLSecurityScoped = url.startAccessingSecurityScopedResource()
             
-            let asset = FairPlayPlayer().getAsset(with: viewModel)
+            let asset = AVURLAsset(url: url)
+            if (viewModel.certificateURL != nil && viewModel.licenseURL != nil) {
+                guard let licenseURL = viewModel.licenseURL else {
+                    print("No license URL")
+                    return
+                }
+                guard let certificateURL = viewModel.certificateURL else {
+                    print("No certificate URL")
+                    return
+                }
+                let contentKeyDelegate = ContentKeySessionDelegate(licenseURL: licenseURL, certificateURL: certificateURL)
+                // Create the Content Key Session using the FairPlay Streaming key system.
+                let contentKeySession = AVContentKeySession(keySystem: .fairPlayStreaming)
+                contentKeySession.setDelegate(contentKeyDelegate, queue: DispatchQueue.main)
+                contentKeySession.addContentKeyRecipient(asset)
+            }
             let playerItem = AVPlayerItem(asset: asset)
             
             do {

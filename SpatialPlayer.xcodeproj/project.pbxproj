@@ -19,7 +19,7 @@
 		770D813D2BC5873500A5BD78 /* Videos.json in Resources */ = {isa = PBXBuildFile; fileRef = 770D813C2BC5873500A5BD78 /* Videos.json */; };
 		770D81412BC58A6900A5BD78 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770D81402BC58A6900A5BD78 /* Video.swift */; };
 		770D81432BC58AAA00A5BD78 /* ReadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770D81422BC58AAA00A5BD78 /* ReadData.swift */; };
-		775FCF962BCD0EA600E4626E /* FairPlayPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775FCF952BCD0EA600E4626E /* FairPlayPlayer.swift */; };
+		778C8AA12BD94EBB0078EC91 /* ContentKeySessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C8AA02BD94EBB0078EC91 /* ContentKeySessionDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		770D813C2BC5873500A5BD78 /* Videos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Videos.json; sourceTree = "<group>"; };
 		770D81402BC58A6900A5BD78 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		770D81422BC58AAA00A5BD78 /* ReadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadData.swift; sourceTree = "<group>"; };
-		775FCF952BCD0EA600E4626E /* FairPlayPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FairPlayPlayer.swift; sourceTree = "<group>"; };
+		778C8AA02BD94EBB0078EC91 /* ContentKeySessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentKeySessionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +83,7 @@
 				4C6B90FC2B72E08000DF217E /* Info.plist */,
 				770D81402BC58A6900A5BD78 /* Video.swift */,
 				770D81422BC58AAA00A5BD78 /* ReadData.swift */,
-				775FCF952BCD0EA600E4626E /* FairPlayPlayer.swift */,
+				778C8AA02BD94EBB0078EC91 /* ContentKeySessionDelegate.swift */,
 			);
 			path = SpatialPlayer;
 			sourceTree = "<group>";
@@ -160,7 +160,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				775FCF962BCD0EA600E4626E /* FairPlayPlayer.swift in Sources */,
 				4C6B90F22B72E07F00DF217E /* ContentView.swift in Sources */,
 				4CDBB18B2B97A3AE0062E7CD /* CMProjectionType+String.swift in Sources */,
 				4C6B91052B72F9B900DF217E /* PlayerViewModel.swift in Sources */,
@@ -169,6 +168,7 @@
 				770D81412BC58A6900A5BD78 /* Video.swift in Sources */,
 				4CDBB1892B97A21B0062E7CD /* VideoInfo.swift in Sources */,
 				4C6B90F02B72E07F00DF217E /* SpatialPlayerApp.swift in Sources */,
+				778C8AA12BD94EBB0078EC91 /* ContentKeySessionDelegate.swift in Sources */,
 				4C5B95762B967736003DD53C /* DocumentPicker.swift in Sources */,
 				4C6B90F42B72E07F00DF217E /* ImmersiveView.swift in Sources */,
 			);
