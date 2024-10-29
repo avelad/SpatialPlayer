@@ -4,12 +4,6 @@
         "name": "Prehistoric Planet Clip",
     },
     {
-        "url" : "https://na-fps.ezdrm.com/demo/ezdrm/master.m3u8",
-        "license": "https://fps.ezdrm.com/api/licenses/b99ed9e5-c641-49d1-bfa8-43692b686ddb",
-        "certificate": "https://fps.ezdrm.com/demo/video/eleisure.cer",
-        "name": "Big Buck Bunny (FairPlay)",
-    },
-    {
         "url": "https://playgrounds-cdn.apple.com/assets/beach/index.m3u8",
         "name": "A Beach",
     },
