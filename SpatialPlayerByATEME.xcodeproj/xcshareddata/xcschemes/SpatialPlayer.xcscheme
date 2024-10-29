@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4C6B90E72B72E07F00DF217E"
                BuildableName = "Spatial Player.app"
-               BlueprintName = "SpatialPlayer"
-               ReferencedContainer = "container:SpatialPlayer.xcodeproj">
+               BlueprintName = "SpatialPlayerByATEME"
+               ReferencedContainer = "container:SpatialPlayerByATEME.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,8 +45,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C6B90E72B72E07F00DF217E"
             BuildableName = "Spatial Player.app"
-            BlueprintName = "SpatialPlayer"
-            ReferencedContainer = "container:SpatialPlayer.xcodeproj">
+            BlueprintName = "SpatialPlayerByATEME"
+            ReferencedContainer = "container:SpatialPlayerByATEME.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,8 +62,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C6B90E72B72E07F00DF217E"
             BuildableName = "Spatial Player.app"
-            BlueprintName = "SpatialPlayer"
-            ReferencedContainer = "container:SpatialPlayer.xcodeproj">
+            BlueprintName = "SpatialPlayerByATEME"
+            ReferencedContainer = "container:SpatialPlayerByATEME.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
